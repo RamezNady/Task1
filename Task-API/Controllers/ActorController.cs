@@ -24,22 +24,31 @@ namespace Task_API.Controllers
     public class ActorController : ControllerBase
     {
 
-        private ActorManager _actorManager;
+        private IActorManager _actorManager;
         private IConfiguration _config;
-        public ActorController(ActorManager actorManager,IConfiguration config)
+        public ActorController(IActorManager actorManager,IConfiguration config)
         {
             _actorManager = actorManager;
             _config = config;
         }
 
 
+///////////////////////////////////////////////////////////////////////////////////
+        //for test
+        /* 
         [HttpGet]
         public IEnumerable<string> Get()
         {            
+            var newactor = new Actor();
+            newactor.Name = "444oo44";
+            var CreaqtedActor = _actorManager.Register(newactor,"kjkjkj");
             return new string[] { "value1", "value2" };
         }
+        */
 
-        // POST 
+
+
+///////////////////////////////////////////////////////////////////////////////////        // POST 
         [HttpPost("register")] 
         public  async Task<IActionResult> Register([FromBody]ActorForRegisterDTO a){
             //validation
@@ -51,13 +60,15 @@ namespace Task_API.Controllers
             var newactor = new Actor();
             newactor.Name = a.Name;
 
+
             var CreaqtedActor = await _actorManager.Register(newactor,a.Password);
             return StatusCode(201);
   
         }
 
 
-        [HttpPost("login")] 
+
+///////////////////////////////////////////////////////////////////////////////////        [HttpPost("login")] 
         public  async Task<IActionResult> login(ActorForLoginDTO a){
                                
             Actor actor = await _actorManager.Login(a.Name.ToLower(),a.Password);
@@ -80,12 +91,12 @@ namespace Task_API.Controllers
             };
 
             var TokenHandler = new JwtSecurityTokenHandler();
-
             var Token = TokenHandler.CreateToken(TokenDescriptor);
             
             return Ok(new{token =TokenHandler.WriteToken(Token)});
 
         }
+
 
 
 

@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Task_API.BLL.Manager
 {
-    public class ActorManager
+    public class ActorManager  : IActorManager
     {
 
         private ActorRepository _ActorRepository;
@@ -16,7 +16,6 @@ namespace Task_API.BLL.Manager
         {
             _ActorRepository = new ActorRepository(context);
         }
-
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
+using Task_API.BLL.Manager;
 
 namespace Task_API
 {
@@ -31,9 +32,11 @@ namespace Task_API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<DataContext>(option=>option.UseSqlServer(Configuration.GetConnectionString("ConnectionForMe")));
+            
             services.AddCors();
 
-            //services.AddScoped<IAuthRepoitory,AuthRepoitory>();
+            services.AddScoped<IActorManager,ActorManager>();
+            services.AddScoped<IUserManager,UserManager>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(Options=>
@@ -59,15 +62,15 @@ namespace Task_API
             else
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                //app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseCors(
                 x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
             );
-
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
