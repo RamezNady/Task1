@@ -75,7 +75,7 @@ namespace Task_API.BLL.Manager
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public async Task<bool> actorExists(string Name)
+        public async Task<bool> ActorExists(string Name)
         {
             //if(await _ActorRepository.Actors.AnyAsync(x=>x.Name == Name)) 
             //    return true;

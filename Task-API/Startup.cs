@@ -32,6 +32,21 @@ namespace Task_API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<DataContext>(option=>option.UseSqlServer(Configuration.GetConnectionString("ConnectionForMe")));
             services.AddCors();
+
+            //services.AddScoped<IAuthRepoitory,AuthRepoitory>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(Options=>
+            {
+                Options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration.GetSection("AppSetting:Token").Value)),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });        
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +63,11 @@ namespace Task_API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(
+                x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+            );
+
             app.UseMvc();
         }
     }
