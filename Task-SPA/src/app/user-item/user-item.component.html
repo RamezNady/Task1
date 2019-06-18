@@ -1,4 +1,4 @@
-
+<div *ngIf="this.globals.role">
 <form ngForm="form" (submit)="mySubmit()">
 
   <input type="hidden" name="id" [(ngModel)]="service.user.id">
@@ -12,5 +12,17 @@
     <input type="submit" class="btn btn-dark btn-lg" value="Save New User">
 
 </form>
+</div>
 
+
+
+
+
+
+<div *ngIf="this.globals.role">
+<hr size="100" color=black>
+<form ngForm="form" (submit)="Logout()">
+      <input type="submit" class="btn btn-dark btn-lg" value="Logout">
+</form>
+</div>
 

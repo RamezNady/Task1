@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
+import { Globals } from '../globals';
 
 @Component({
   selector: 'app-user-list',
@@ -8,17 +9,20 @@ import { UserService } from '../user.service';
 })
 export class UserListComponent implements OnInit {
 
-  constructor(private service:UserService) { }
+  constructor(private service:UserService,private globals:Globals) { }
 
   ngOnInit() {
     this.service.getAllUsers();
+    if (!this.globals.role) {
+      this.service.token = '';
+    }
   }
 
 
   fillData(item){
     this.service.user.id = item.id;
     this.service.user.name = item.name;
-    this.service.user.statue= item.statue;
+    this.service.user.state= item.statue;
   }
 
   delete(id){

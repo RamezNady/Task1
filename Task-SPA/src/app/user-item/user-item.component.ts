@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { NgForm } from '@angular/forms';
+import { Globals } from '../globals';
+import { Actor } from '../actor';
 
 @Component({
   selector: 'app-user-item',
@@ -9,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class UserItemComponent implements OnInit {
 
-  constructor(private service:UserService) { }
+  constructor(private service:UserService,private globals:Globals) { }
 
   ngOnInit() {
     this.service.user={
@@ -17,7 +19,14 @@ export class UserItemComponent implements OnInit {
       name :null,
       state :true
     }
+
+    if (!this.globals.role) {
+      this.service.token = '';
+    }
   }
+
+
+
 
 
   mySubmit()
@@ -25,9 +34,14 @@ export class UserItemComponent implements OnInit {
     if(this.service.user.id==0)
     {
       this.service.postUser().subscribe(
-        resolve => {alert("Done");this.service.getAllUsers()},
+        resolve => {this.service.getAllUsers()},
         err => {console.log(err)}
       )
+      this.service.user={
+        id : 0,
+        name :null,
+        state :true
+      }
     }
     else
     {
@@ -35,6 +49,16 @@ export class UserItemComponent implements OnInit {
         res => {this.service.getAllUsers()},
         err => {console.log(err)}
       )    
-    }
+      this.service.user={
+        id : 0,
+        name :null,
+        state :true
+      }
+      }
+  }
+
+
+  Logout(){
+    this.globals.role = false;
   }
 }

@@ -15,6 +15,7 @@ namespace Task_API.DAL.Models
 
         [Column(TypeName ="nvarchar(100)")]
         [Required]
+        [StringLength(8, MinimumLength = 4,ErrorMessage="Maenf3sh el klam dah")]
         public string Name { get; set; }
 
         public bool State { get; set; }
