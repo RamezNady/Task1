@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { NgForm } from '@angular/forms';
 import { Globals } from '../globals';
-import { Actor } from '../actor';
 
 @Component({
   selector: 'app-user-item',

@@ -13,17 +13,17 @@ export class ActorService {
    }
 
   url:string="http://localhost:5000/api/actor"
-  actor1:Actor;
-  actor2:Actor;
+  actor:Actor;
+  //actor1:Actor;
 
 
   registerActor(){
-    return this.http.post(this.url+'/register',this.actor1);
+    return this.http.post(this.url+'/register',this.actor);
   }
 
 
   loginActor(){
-    return this.http.post(this.url+'/login',this.actor2);
+    return this.http.post(this.url+'/login',this.actor);
   }
 
 

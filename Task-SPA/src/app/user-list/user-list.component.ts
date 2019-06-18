@@ -22,7 +22,7 @@ export class UserListComponent implements OnInit {
   fillData(item){
     this.service.user.id = item.id;
     this.service.user.name = item.name;
-    this.service.user.state= item.statue;
+    this.service.user.state= item.state;
   }
 
   delete(id){

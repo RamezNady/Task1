@@ -19,8 +19,10 @@ export class LoginComponent implements OnInit {
   Login(){
     this.service.loginActor().subscribe(
       (response:any) => {localStorage.setItem('token',response.token); this.globals.role=true;},
-      err => {alert("faild  !! ");console.log(err);}
+      err => {console.log(err);}
     );
+    this.service.actor.name=null;
+    this.service.actor.password=null;
 
 
 
