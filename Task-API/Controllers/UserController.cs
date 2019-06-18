@@ -50,7 +50,7 @@ namespace Task_API.Controllers
         {
             User User = await _userManager.UserByID(id);
             User.Name = user.Name;
-            User.IsActive = user.IsActive;
+            User.State = user.State;
             await _userManager.UpdateUser(User);
         }
 
@@ -60,7 +60,7 @@ namespace Task_API.Controllers
         {
              User User =await _userManager.UserByID(id);
              if(User!=null){                 
-             User.IsActive=false;
+             User.State=false;
              await _userManager.UpdateUser(User);
              return Ok();
              }

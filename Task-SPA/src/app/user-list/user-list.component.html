@@ -1,0 +1,18 @@
+
+
+
+  <table class="table table-bordered table-hover">
+    <thead>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Performing... </th>
+    </thead>
+    <tbody>
+      <tr (click)="fillData(item)" *ngFor="let item of service.users">
+        <td>{{item.name}}</td>
+        <td> {{item.state}}
+        </td>
+        <td (click)="delete(item.id)"><span class="btn btn-danger"> DELETE</span></td>
+      </tr>
+    </tbody>
+  </table>

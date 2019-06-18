@@ -1,0 +1,16 @@
+
+<form ngForm="form" (submit)="mySubmit()">
+
+  <input type="hidden" name="id" [(ngModel)]="service.user.id">
+  <input type="hidden" name="statue" [(ngModel)]="service.user.state">
+  
+  <div class="form-group">
+      <label for="name">Name Of User: </label>
+      <input type="text" name="name" [(ngModel)]="service.user.name"  class="form-control">
+  </div>
+
+    <input type="submit" class="btn btn-dark btn-lg" value="Save New User">
+
+</form>
+
+

@@ -17,6 +17,6 @@ namespace Task_API.DAL.Models
         [Required]
         public string Name { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool State { get; set; }
     }
 }

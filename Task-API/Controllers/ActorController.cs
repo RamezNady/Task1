@@ -69,9 +69,10 @@ namespace Task_API.Controllers
 
 
 ///////////////////////////////////////////////////////////////////////////////////        [HttpPost("login")] 
-        public  async Task<IActionResult> login(ActorForLoginDTO a){
-                               
-            Actor actor = await _actorManager.Login(a.Name.ToLower(),a.Password);
+        [HttpPost("login")] 
+        public  async Task<IActionResult> login([FromBody]ActorForLoginDTO a ){
+
+            var actor = await _actorManager.Login(a.Name.ToLower(),a.Password);
 
             if(actor == null) return Unauthorized(); 
 
