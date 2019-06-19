@@ -20,14 +20,14 @@ export class UserService {
     'Content-Type': 'application/json',
     'Authorization': "Bearer "+this.token
   });
-  
-
+ 
   
 
   getAllUsers(){
     this.http.get(this.url,{headers:this.headers_object}).toPromise().then(
       res=> {this.users = res as User[];}
-    )
+    ) 
+
   }
 
   postUser(){

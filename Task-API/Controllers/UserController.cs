@@ -11,7 +11,7 @@ using Task_API.BLL.Manager;
 
 namespace Task_API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
